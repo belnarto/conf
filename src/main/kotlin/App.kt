@@ -1,10 +1,9 @@
 import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.launch
-import kotlinx.css.*
 import react.*
-import react.dom.*
-import styled.css
-import styled.styledDiv
+import react.dom.div
+import react.dom.h1
+import react.dom.h3
 
 external interface AppState : RState {
     var currentVideo: Video?

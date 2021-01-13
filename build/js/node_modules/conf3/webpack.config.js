@@ -1,5 +1,5 @@
 var config = {
-  mode: 'production',
+  mode: 'development',
   resolve: {
     modules: [
       "node_modules"
@@ -13,7 +13,7 @@ var config = {
 
 // entry
 config.entry = {
-    main: ["C:\\Users\\ZinchenkoAY\\Documents\\github\\conf3\\build\\js\\packages\\conf3\\kotlin-dce\\conf3.js"]
+    main: ["C:\\Users\\ZinchenkoAY\\Documents\\github\\conf3\\build\\js\\packages\\conf3\\kotlin\\conf3.js"]
 };
 
 config.output = {
@@ -27,16 +27,26 @@ config.output = {
     libraryTarget: "umd",
 };
 
-// resolve modules
-config.resolve.modules.unshift("C:\\Users\\ZinchenkoAY\\Documents\\github\\conf3\\build\\js\\packages\\conf3\\kotlin-dce")
-
 // source maps
 config.module.rules.push({
         test: /\.js$/,
         use: ["kotlin-source-map-loader"],
         enforce: "pre"
 });
-config.devtool = 'source-map';
+config.devtool = 'eval-source-map';
+
+// dev server
+config.devServer = {
+  "inline": true,
+  "lazy": false,
+  "noInfo": true,
+  "open": true,
+  "overlay": false,
+  "port": 8080,
+  "contentBase": [
+    "C:\\Users\\ZinchenkoAY\\Documents\\github\\conf3\\build\\processedResources\\Js\\main"
+  ]
+};
 
 // save evaluated config file
 var util = require('util');
@@ -44,17 +54,4 @@ var fs = require("fs");
 var evaluatedConfig = util.inspect(config, {showHidden: false, depth: null, compact: false});
 fs.writeFile("C:\\Users\\ZinchenkoAY\\Documents\\github\\conf3\\build\\reports\\webpack\\conf3\\webpack.config.evaluated.js", evaluatedConfig, function (err) {});
 
-// Report progress to console
-// noinspection JSUnnecessarySemicolon
-;(function(config) {
-    const webpack = require('webpack');
-    const handler = (percentage, message, ...args) => {
-        let p = percentage * 100;
-        let msg = `${Math.trunc(p / 10)}${Math.trunc(p % 10)}% ${message} ${args.join(' ')}`;
-        msg = msg.replace(new RegExp("C:\\Users\\ZinchenkoAY\\Documents\\github\\conf3\\build\\js", 'g'), '');;
-        console.log(msg);
-    };
-
-    config.plugins.push(new webpack.ProgressPlugin(handler))
-})(config);
 module.exports = config

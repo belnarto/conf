@@ -37,6 +37,7 @@
   var minus = Kotlin.kotlin.collections.minus_2ws7j4$;
   var plus = Kotlin.kotlin.collections.plus_qloxvw$;
   var getKClass = Kotlin.getKClass;
+  var child = $module$kotlin_react.react.child_9r8yuv$;
   var RComponent_init = $module$kotlin_react.react.RComponent_init_lqgejo$;
   var Kind_CLASS = Kotlin.Kind.CLASS;
   var RComponent = $module$kotlin_react.react.RComponent;
@@ -72,6 +73,7 @@
   var DIV_init_0 = $module$kotlin_styled.$$importsForInline$$['kotlinx-html-js'].kotlinx.html.DIV;
   var collectionSizeOrDefault = Kotlin.kotlin.collections.collectionSizeOrDefault_ba2ldo$;
   var ArrayList_init = Kotlin.kotlin.collections.ArrayList_init_ww73n8$;
+  var functionalComponent = $module$kotlin_react.react.functionalComponent_1klik0$;
   App.prototype = Object.create(RComponent.prototype);
   App.prototype.constructor = App;
   VideoList.prototype = Object.create(RComponent.prototype);
@@ -159,6 +161,10 @@
     var mainScope = MainScope();
     launch(mainScope, void 0, void 0, App$init$lambda(this));
   };
+  function App$render$lambda($receiver) {
+    $receiver.name = 'Kotlin';
+    return Unit;
+  }
   function App$render$lambda$lambda$lambda$lambda(closure$video) {
     return function ($receiver) {
       $receiver.currentVideo = equals(closure$video, $receiver.currentVideo) ? null : closure$video;
@@ -233,6 +239,7 @@
   }
   App.prototype.render_ss14n$ = function ($receiver) {
     var tmp$;
+    this.welcome_mmsrla$($receiver, App$render$lambda);
     var $receiver_0 = new RDOMBuilder_init(h1$lambda(null));
     $receiver_0.unaryPlus_pdl1vz$('KotlinConf Explorer');
     $receiver.child_52psg1$($receiver_0.create());
@@ -257,6 +264,21 @@
   }
   App.prototype.videoList_mwm0vr$ = function ($receiver, handler) {
     return $receiver.child_ssazr1$(getKClass(VideoList), App$videoList$lambda(handler));
+  };
+  function App$welcome$lambda$lambda(closure$handler) {
+    return function ($receiver) {
+      closure$handler($receiver);
+      return Unit;
+    };
+  }
+  function App$welcome$lambda(closure$handler) {
+    return function ($receiver) {
+      $receiver.attrs_slhiwc$(App$welcome$lambda$lambda(closure$handler));
+      return Unit;
+    };
+  }
+  App.prototype.welcome_mmsrla$ = function ($receiver, handler) {
+    return child($receiver, welcome, void 0, App$welcome$lambda(handler));
   };
   App.$metadata$ = {
     kind: Kind_CLASS,
@@ -610,6 +632,18 @@
   function fetchVideos(continuation) {
     return coroutineScope(fetchVideos$lambda, continuation);
   }
+  function h1$lambda_0(closure$classes) {
+    return function (it) {
+      return new H1_init(attributesMapOf('class', closure$classes), it);
+    };
+  }
+  function welcome$lambda($receiver, props) {
+    var $receiver_0 = new RDOMBuilder_init(h1$lambda_0(null));
+    $receiver_0.unaryPlus_pdl1vz$('Hello, ' + props.name);
+    $receiver.child_52psg1$($receiver_0.create());
+    return Unit;
+  }
+  var welcome;
   $$importsForInline$$['kotlin-react-dom'] = $module$kotlin_react_dom;
   _.App = App;
   _.main = main;
@@ -620,6 +654,12 @@
   _.videoPlayer_xm7p1w$ = videoPlayer;
   _.fetchVideo_za3lpa$ = fetchVideo;
   _.fetchVideos = fetchVideos;
+  Object.defineProperty(_, 'welcome', {
+    get: function () {
+      return welcome;
+    }
+  });
+  welcome = functionalComponent(welcome$lambda);
   main();
   Kotlin.defineModule('conf3', _);
   return _;

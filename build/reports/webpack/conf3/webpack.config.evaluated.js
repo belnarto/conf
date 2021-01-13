@@ -1,8 +1,7 @@
 {
-  mode: 'production',
+  mode: 'development',
   resolve: {
     modules: [
-      'C:\\Users\\ZinchenkoAY\\Documents\\github\\conf3\\build\\js\\packages\\conf3\\kotlin-dce',
       'node_modules'
     ]
   },
@@ -20,7 +19,7 @@
   },
   entry: {
     main: [
-      'C:\\Users\\ZinchenkoAY\\Documents\\github\\conf3\\build\\js\\packages\\conf3\\kotlin-dce\\conf3.js'
+      'C:\\Users\\ZinchenkoAY\\Documents\\github\\conf3\\build\\js\\packages\\conf3\\kotlin\\conf3.js'
     ]
   },
   output: {
@@ -29,5 +28,16 @@
     library: 'conf3',
     libraryTarget: 'umd'
   },
-  devtool: 'source-map'
+  devtool: 'eval-source-map',
+  devServer: {
+    inline: true,
+    lazy: false,
+    noInfo: true,
+    open: true,
+    overlay: false,
+    port: 8080,
+    contentBase: [
+      'C:\\Users\\ZinchenkoAY\\Documents\\github\\conf3\\build\\processedResources\\Js\\main'
+    ]
+  }
 }
