@@ -36,3 +36,7 @@ dependencies {
 }
 
 kotlin.target.browser { }
+
+tasks.register("stage") {
+    dependsOn("build")
+}
