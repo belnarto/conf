@@ -28,6 +28,9 @@ class App : RComponent<RProps, AppState>() {
     }
 
     override fun RBuilder.render() {
+        welcome {
+            name = "Kotlin"
+        }
         h1 {
             +"KotlinConf Explorer"
         }
@@ -82,6 +85,12 @@ class App : RComponent<RProps, AppState>() {
     fun RBuilder.videoList(handler: VideoListProps.() -> Unit): ReactElement {
         return child(VideoList::class) {
             this.attrs(handler)
+        }
+    }
+
+    fun RBuilder.welcome(handler: WelcomeProps.() -> Unit) = child(welcome) {
+        attrs {
+            handler()
         }
     }
 }
